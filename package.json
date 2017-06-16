@@ -1,7 +1,7 @@
 {
-  "name": "oms",
+  "name": "vue template",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "vue template",
   "author": "crab1127 <crab1127@gmail.com>",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^1.3.6",
+    "error-report-crab": "^1.1.9",
     "vue": "^2.3.3",
     "vue-resource": "^1.3.4",
     "vue-router": "^2.3.1",
@@ -34,6 +36,8 @@
     "friendly-errors-webpack-plugin": "^1.1.3",
     "html-webpack-plugin": "^2.28.0",
     "http-proxy-middleware": "^0.17.3",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.4",
     "opn": "^4.0.2",
     "optimize-css-assets-webpack-plugin": "^1.3.0",
     "ora": "^1.2.0",
