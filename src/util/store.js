@@ -1,9 +1,7 @@
-export default function(type = 'localStorage') {
-
+export default (type = 'localStorage') => {
   const ac = window[type]
-
   return {
-    set(key, value) {
+    set (key, value) {
       try {
         // if (Object.prototype.toString.call(value))
         if (typeof value === 'object') {
@@ -13,24 +11,24 @@ export default function(type = 'localStorage') {
         ac.setItem(key, value)
       } catch (err) { console.log(err) }
     },
-    get(key) {
+    get (key) {
       try {
         return JSON.parse(ac.getItem(key))
       } catch (err) {
         return ac.getItem(key)
       }
     },
-    remove(key) {
+    remove (key) {
       try {
         ac.removeItem(key)
       } catch (err) { console.log(err) }
     },
-    clear() {
+    clear () {
       try {
         ac.clear()
       } catch (err) { console.log(err) }
     },
-    has(key) {
+    has (key) {
       // return Store(type).get(key) !== undefined
     }
   }

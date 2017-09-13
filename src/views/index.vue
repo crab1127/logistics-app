@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
+<style scoped>
 h1, h2 {
   font-weight: normal;
 }

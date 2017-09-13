@@ -17,7 +17,6 @@ FE_DEBUG.init({
 Vue.config.errorHandler = function(err, vm) {
   FE_DEBUG.reportError(err)
 }
-
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

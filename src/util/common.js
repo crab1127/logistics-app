@@ -24,7 +24,7 @@ export const getCatch = (key, params = {}) => {
   if (keys.length === 1) {
     cacheKey = cacheKey + '_' + data[keys[0]]
   } else if (keys.length > 1) {
-    keys.sort().forEach(key => cacheKey = `${cacheKey}_${data[key]}`)
+    keys.sort().forEach(key => { cacheKey = `${cacheKey}_${data[key]}` })
   }
 
   const cacheData = Cache.get(cacheKey)
@@ -40,14 +40,14 @@ export const isEmpty = (str) => {
 }
 
 export const getQueryString = (name) => {
-  var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
   try {
-    var r = window.location.href.split('?')[1].match(reg);
+    var r = window.location.href.split('?')[1].match(reg)
     if (r != null) {
-      var str = r[2];
-      return decodeURIComponent(str);
+      var str = r[2]
+      return decodeURIComponent(str)
     }
-    return null;
+    return null
   } catch (e) {
     return null
   }
@@ -61,7 +61,7 @@ export const getQueryString = (name) => {
  * @return {[date]} 时间
  */
 export const dateFormat = (date, fmt = 'yyyy-MM-dd hh:mm:ss') => {
-  if (!date) return '';
+  if (!date) return ''
 
   const date1 = new Date(date)
   const o = {
@@ -79,12 +79,11 @@ export const dateFormat = (date, fmt = 'yyyy-MM-dd hh:mm:ss') => {
 
   for (let k in o) {
     if (new RegExp('(' + k + ')').test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)))
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
     }
   }
   return fmt
 }
-
 
 /**
  * 合并数据，并过滤重复数据, 向上刷新更多

@@ -1,7 +1,6 @@
-# oms
+# template
 
-> A Vue.js Template
-> 技术栈：vue + vuex + vue-router + vue-resource + less
+> A Vue.js project
 
 ## Build Setup
 
@@ -19,3 +18,4 @@ npm run build
 npm run build --report
 ```
 
+For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

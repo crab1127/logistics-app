@@ -3,7 +3,7 @@ const state = {
 }
 
 const mutations = {
-  SET_TITLE(state, { title }) {
+  SET_TITLE (state, { title }) {
     if (title) {
       document.title = title
       state.title = title
