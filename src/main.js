@@ -8,7 +8,7 @@ import 'element-ui/lib/theme-default/index.css'
 
 import App from './App'
 import store from './store'
-import router from './router'
+import { router } from './router'
 
 FE_DEBUG.init({
   siteId: null,
