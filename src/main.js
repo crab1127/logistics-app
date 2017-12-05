@@ -2,27 +2,26 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 
-import FE_DEBUG from 'error-report-crab'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 
 import App from './App'
 import store from './store'
-import { router } from './router'
+import router from './router'
+import i18n from './lang'
 
-FE_DEBUG.init({
-  siteId: null,
-  silent: process.env.NODE_ENV !== 'production'
-})
-Vue.config.errorHandler = function(err, vm) {
-  FE_DEBUG.reportError(err)
+Vue.config.errorHandler = (err, vm) => {
+  console.error(err, vm)
 }
-Vue.use(ElementUI)
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  i18n,
   store,
   router,
   template: '<App/>',
