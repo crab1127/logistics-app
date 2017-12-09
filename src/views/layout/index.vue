@@ -1,23 +1,100 @@
 <template>
   <div>
-    <section class="top-bar">
-      <div class="container">
-        <a href="">{{ $t('common.login') }}</a>
-        <a href="">{{ $t('common.register') }}</a>
-        <span>中午</span>
-        <span>English</span>
-      </div>
-    </section>
     <header class="header container">
-      <nav class="nav">
-        <router-link to="/">{{ $t('nav.index') }}</router-link>
-        <router-link to="/mail">{{ $t('nav.mail') }}</router-link>
-        <router-link to="/news">{{ $t('nav.news') }}</router-link>
-        <router-link to="/about">{{ $t('nav.about') }}</router-link>
-      </nav>
+      <h1>
+        <router-link to="/">
+          <img src="../../assets/images/logo.jpg" width="200px" height="80px" alt=""> 
+        </router-link>
+      </h1>
+      <ul class="nav">
+        <li>
+          <router-link to="/">{{ $t('nav.index') }}</router-link>
+        </li>
+        <li>
+          <router-link to="/mail">{{ $t('nav.mail') }}</router-link>
+        </li>
+        <li>
+          <router-link to="/news">{{ $t('nav.news') }}</router-link>
+        </li>
+        <li>
+          <router-link to="/about">{{ $t('nav.about') }}</router-link>
+        </li>
+        <li class="user">
+          <span>{{ $t('common.login') }}</span>
+          &nbsp;/&nbsp;
+          <span>{{ $t('common.register') }}</span>
+        </li>
+        <li class="lang">
+          <span @click="tiggleLang('zh')">中文</span>
+          &nbsp;/&nbsp;
+          <span @click="tiggleLang('en')">EN</span>
+        </li>
+      </ul>
     </header>
-    <div class="container">
+    <main class="container">
       <router-view></router-view>
-    </div>
+    </main>
+    <footer class="footer">
+      &copy;2017 某某公司
+    </footer>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'layout',
+  data () {
+    return {
+
+    }
+  },
+  methods: {
+    tiggleLang (lang) {
+      this.$i18n.locale = lang
+      this.$store.dispatch('setLanguage', lang)
+      this.$message({
+        message: 'switch language success',
+        type: 'success'
+      })
+    }
+  }
+}
+</script>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .nav {
+    display: flex;
+  }
+  .nav li {
+    display: flex;
+    font-size: 16px;
+    padding: 0 10px;
+  }
+  .nav a {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+  }
+  .nav .lang,
+  .nav .user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .footer {
+    padding: 20px;
+    text-align: center;
+  }
+</style>
+
+

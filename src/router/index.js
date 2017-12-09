@@ -14,12 +14,13 @@ export const routerMap = [
     redirect: '/index',
     name: 'index',
     children: [
-      { path: 'index', component: _import('index') },
+      { path: 'index', component: _import('index/index') },
       { path: 'news', name: 'news', component: _import('news/list') },
       { path: 'news/:id', name: 'news-content', component: _import('news/content') },
       {
         path: 'mail',
         name: 'mail',
+        redirect: '/mail/step/1',
         component: _import('mail/index'),
         children: [
           { path: 'step/1', name: 'step-1', component: _import('mail/step1') },
@@ -33,7 +34,7 @@ export const routerMap = [
       {
         path: 'about',
         name: 'about',
-        // redirect: '/intro',
+        redirect: '/about/intro',
         component: _import('about/index'),
         children: [
           { path: 'intro', component: _import('about/intro') },

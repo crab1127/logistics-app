@@ -1,6 +1,6 @@
 <template>
   <div>
-    联系我们
+    <h2> {{ $t('nav.culture') }} </h2>
   </div>
 </template>
 

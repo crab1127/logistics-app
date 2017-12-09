@@ -5,8 +5,11 @@
 </template>
 
 <script>
-export default {
-  name: 'mail-step-1'
-}
+  export default {
+    name: 'mail-step-1',
+    mounted () {
+      this.$store.commit('SET_STEP', {step:4})
+    }
+  }
 </script>
 

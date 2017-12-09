@@ -1,6 +1,6 @@
 <template>
   <div>
-    简介
+    <h2> {{ $t('nav.intro') }} </h2>
   </div>
 </template>
 
