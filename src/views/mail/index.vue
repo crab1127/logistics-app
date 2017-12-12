@@ -5,7 +5,7 @@
       <el-breadcrumb-item>{{ $t('nav.mail') }}</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="step-container">
-      <el-steps :active="active" :align-center="true">
+      <el-steps :active="active" align-center>
         <el-step :title="$t('mail.step1')"></el-step>
         <el-step :title="$t('mail.step2')"></el-step>
         <el-step :title="$t('mail.step3')"></el-step>
@@ -32,7 +32,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .step-container {
     background: #eee;
     margin: 10px 0 0;
