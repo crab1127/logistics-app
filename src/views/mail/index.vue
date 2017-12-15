@@ -4,6 +4,7 @@
       <el-breadcrumb-item :to="{ path: '/' }">{{ $t('nav.index') }}</el-breadcrumb-item>
       <el-breadcrumb-item>{{ $t('nav.mail') }}</el-breadcrumb-item>
     </el-breadcrumb>
+    
     <div class="step-container">
       <el-steps :active="active" align-center>
         <el-step :title="$t('mail.step1')"></el-step>
@@ -14,6 +15,14 @@
         <el-step :title="$t('mail.step6')"></el-step>
       </el-steps>
     </div>
+    <div class="flex mail-header">
+      <div style="width: 400px">
+        <mail-count />
+      </div>
+      <div class="flex-item" style="padding-left: 40px;">
+        <div v-html="$t('mail.tipsContent')"></div>
+      </div>
+    </div>
     <div class="mail-main">
       <router-view></router-view>
     </div>
@@ -22,12 +31,16 @@
 
 <script>
   import { mapState } from 'vuex'
+  import MailCount from '@/components/mail'
   export default {
     name: 'mail',
     computed: {
       ...mapState({
         active: state => state.mail.step
       })
+    },
+    components: {
+      MailCount
     }
   }
 </script>
@@ -43,6 +56,10 @@
   }
   .mail-main {
     border: 2px solid #eee;
+    padding: 20px;
+  }
+  .mail-header {
+    background: #f4f4f4;
     padding: 20px;
   }
 </style>

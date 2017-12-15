@@ -28,12 +28,12 @@
   export default {
     name: 'mail-step-1',
     mounted () {
-      this.$store.commit('SET_STEP', {step:1})
+      this.$store.commit('SET_STEP', {step: 1})
     }
   }
 </script>
 
-<style scoped>
+<style >
   
 </style>
 

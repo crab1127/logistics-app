@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import IndexMail from './_mail'
+import IndexMail from '@/components/mail'
 export default {
   name: 'hello',
   data () {
