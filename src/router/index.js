@@ -48,6 +48,7 @@ export const routerMap = [
 
 export default new Router({
   // mode: 'history', //后端支持可开
+  base: '/app/zmail',
   scrollBehavior: () => ({ y: 0 }),
   routes: routerMap
 })
