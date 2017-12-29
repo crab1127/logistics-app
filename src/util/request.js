@@ -1,0 +1,51 @@
+import Vue from 'vue'
+import VueResource from 'vue-resource'
+
+import router from '../router'
+
+Vue.use(VueResource)
+  // Vue.http.options.emulateJSON = true
+
+Vue.http.interceptors.push((request, next) => {
+  next(response => {
+    if (response.status === 401) {
+      router.push({ name: 'Login' })
+    }
+  })
+})
+
+const request = (method = 'GET') => (...args) => {
+  return new Promise((resolve, reject) => {
+    let request
+    switch (method) {
+      case 'GET':
+        request = Vue.http.get(...args)
+        break
+      case 'POST':
+        request = Vue.http.post(...args)
+        break
+      case 'PUT':
+        request = Vue.http.put(...args)
+        break
+      case 'DELETE':
+        request = Vue.http.delete(...args)
+        break
+    }
+    request
+      .then(res => {
+        if (res.body.status !== 'success') {
+          throw new Error(res.body.msg)
+        }
+        resolve(res)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  })
+}
+export default {
+  get: request('GET'),
+  post: request('POST'),
+  put: request('PUT'),
+  delete: request('DELETE')
+}

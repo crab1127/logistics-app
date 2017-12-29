@@ -20,11 +20,12 @@
           <router-link to="/about">{{ $t('nav.about') }}</router-link>
         </li>
         <li class="user">
-          <span>{{ $t('common.login') }}</span>
+          <router-link to="/login">{{ $t('common.login') }}</router-link>
           &nbsp;/&nbsp;
-          <span>{{ $t('common.register') }}</span>
+          <router-link to="/sign-up">{{ $t('common.register') }}</router-link>
         </li>
         <li class="lang">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <span @click="tiggleLang('zh')">中文</span>
           &nbsp;/&nbsp;
           <span @click="tiggleLang('en')">EN</span>

@@ -6,8 +6,9 @@ const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router)
 
 export const routerMap = [
-  { path: '/login', component: _import('login/index'), hidden: true },
-  { path: '/404', component: _import('error/404'), hidden: true },
+  { path: '/login', component: _import('login/index') },
+  { path: '/sign-up', component: _import('login/sign-up') },
+  { path: '/404', component: _import('error/404') },
   {
     path: '/',
     component: Layout,
@@ -40,6 +41,21 @@ export const routerMap = [
           { path: 'intro', component: _import('about/intro') },
           { path: 'culture', name: 'culture', component: _import('about/culture') },
           { path: 'contact', name: 'contact', component: _import('about/contact') }
+        ]
+      },
+      // 我的中心
+      {
+        path: 'home',
+        name: 'home',
+        redirect: '/home/info',
+        component: _import('home/index'),
+        children: [
+          { path: 'info', name: 'user-info', component: _import('home/info') },
+          { path: 'order', name: 'user-order', component: _import('home/order') },
+          { path: 'money', name: 'user-money', component: _import('home/money') },
+          { path: 'address', name: 'user-address', component: _import('home/address') },
+          { path: 'password', name: 'user-password', component: _import('home/password') }
+
         ]
       }
     ]
