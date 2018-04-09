@@ -4,6 +4,7 @@ import { API } from '../config'
 export const login = body => request.post(API.login, body)
 export const signUp = body => request.post(API.signUp, body)
 export const userInfo = body => request.get(API.userInfo)
+export const userLevel = body => request.get(API.userLevel)
 
 // 国家
 export const countryList = () => request.get(API.country)

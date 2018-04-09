@@ -40,7 +40,7 @@ const request = (method = 'GET') => (...args) => {
     request
       .then(res => {
         if (res.body.status !== 'success') {
-          throw new Error(res.body.msg)
+          throw new Error(res.body.message)
         }
         resolve(res)
       })

@@ -5,7 +5,7 @@
       <el-breadcrumb-item>{{ $t('nav.home') }}</el-breadcrumb-item>
     </el-breadcrumb>
     <el-row style="margin-top: 10px;">
-      <el-col :span="6">
+      <el-col :span="4">
         <el-menu
           default-active="info"
           @select="nav"
@@ -27,7 +27,7 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="18">
+      <el-col :span="20">
         <router-view style="margin-left: 20px;"></router-view>
       </el-col>
     </el-row>

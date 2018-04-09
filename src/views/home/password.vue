@@ -21,25 +21,16 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+  import * as API from '@/store/api'
   export default {
     name: 'user-info',
+    computed: {
+      ...mapState({
+        user: state => state.global.user
+      })
+    },
     data () {
-      var checkAge = (rule, value, callback) => {
-        if (!value) {
-          return callback(new Error('年龄不能为空'))
-        }
-        setTimeout(() => {
-          if (!Number.isInteger(value)) {
-            callback(new Error('请输入数字值'))
-          } else {
-            if (value < 18) {
-              callback(new Error('必须年满18岁'))
-            } else {
-              callback()
-            }
-          }
-        }, 1000)
-      }
       var validatePass = (rule, value, callback) => {
         if (value === '') {
           callback(new Error('请输入密码'))
@@ -64,7 +55,6 @@
           oldpass: '',
           pass: '',
           checkPass: '',
-          age: ''
         },
         rules2: {
           pass: [
@@ -72,9 +62,6 @@
           ],
           checkPass: [
             { validator: validatePass2, trigger: 'blur' }
-          ],
-          age: [
-            { validator: checkAge, trigger: 'blur' }
           ]
         }
       }
@@ -83,10 +70,18 @@
       submitForm (formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!')
-          } else {
-            console.log('error submit!!')
-            return false
+            API.changeUserPassword({
+              oldpass: this.ruleForm2.oldpass,
+              password: this.ruleForm2.pass,
+              realname: this.user.realname,
+              username: this.user.username
+            }).then(res => {
+              this.$message('修改成功');
+            })
+            .catch(err => {
+              console.log(err)
+              this.$message.error('修改失败');
+            })
           }
         })
       },

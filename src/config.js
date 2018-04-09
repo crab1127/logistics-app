@@ -7,6 +7,7 @@ export const ROOT = 'http://139.199.184.238:8080/lg_service'
 export const API = {
   login: ROOT + '/login',
   userInfo: ROOT + '/userInfo',
+  userLevel: ROOT + '/external/customer/grade/query',  // 客户登记
   signUp: ROOT + '/external/customer/user/manage',
   country: ROOT + '/common/areaCountry',
   changPass: ROOT + '/external/customer/user/pass',
