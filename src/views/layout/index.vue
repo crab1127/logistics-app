@@ -19,7 +19,12 @@
         <li>
           <router-link to="/about">{{ $t('nav.about') }}</router-link>
         </li>
-        <li class="user">
+        <li class="user" v-if="user && user.realname ">
+          
+          <router-link to="/home">{{ user.realname }}</router-link>
+        </li>
+        <li class="user" v-if="!user || !user.realname ">
+          
           <router-link to="/login">{{ $t('common.login') }}</router-link>
           &nbsp;/&nbsp;
           <router-link to="/sign-up">{{ $t('common.register') }}</router-link>
@@ -42,11 +47,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'layout',
+  computed: {
+    ...mapState({
+      user: state => state.global.user
+    })
+  },
   data () {
     return {
-
     }
   },
   methods: {

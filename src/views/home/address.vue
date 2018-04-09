@@ -36,7 +36,7 @@
           <el-input v-model="form.englishName"></el-input>
         </el-form-item>
         <el-form-item :label="$t('address.tel')">
-          <el-input v-model="form.moblie"></el-input>
+          <el-input v-model="form.mobile"></el-input>
         </el-form-item>
         <el-form-item :label="$t('address.mail')">
           <el-input v-model="form.email"></el-input>
@@ -57,7 +57,7 @@
             <el-input v-model="form.town" :placeholder="$t('address.town')"></el-input>
            </div>
            <!-- <el-input v-model="form.street"></el-input> -->
-           <el-input v-model="form.address" :placeholder="$t('address.address_more')"></el-input>
+           <el-input v-model="form.street" :placeholder="$t('address.address_more')"></el-input>
         </el-form-item>
       </el-form>
 
@@ -147,7 +147,7 @@
         const addressServe = this.activeName === 'from' ? API.addressFromList() : API.addressReachList()
         addressServe.then(res => {
           console.log(12344, res)
-          this.tableData = res.data
+          this.tableData = res.body.page.items
         })
       },
       update () {
@@ -161,7 +161,7 @@
         })
       },
       create () {
-        const form = { ...this.form }
+        const form = { ...this.form, address: this.form.provice + this.form.city + this.form.town + this.form.street }
         const addressCreateServe = this.activeName === 'from' ? API.addressFromCreate(form) : API.addressReachCreate(form)
         addressCreateServe.then(res => {
           // 重新请求数据

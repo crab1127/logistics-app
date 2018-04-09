@@ -11,7 +11,14 @@ export default {
   },
   common: {
     login: '登录',
-    register: '注册'
+    register: '注册',
+    submit_change: '确认修改',
+    edit: '编辑',
+    del: '删除',
+    add: '添加',
+    cancel: '取消',
+    confirm: '确定',
+    country: '国家'
   },
   index: {
     zyfw: '专业服务',

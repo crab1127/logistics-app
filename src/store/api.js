@@ -3,6 +3,7 @@ import { API } from '../config'
 
 export const login = body => request.post(API.login, body)
 export const signUp = body => request.post(API.signUp, body)
+export const userInfo = body => request.get(API.userInfo)
 
 // 国家
 export const countryList = () => request.get(API.country)
@@ -16,7 +17,7 @@ export const changeUserPassword = body => request.put(API.changPass, body)
 export const addressFromList = params => request.get(API.addressFrom, { params })
 export const addressFromDetail = id => request.get(`${API.addressFrom}/${id}`)
 export const addressFromCreate = body => request.post(API.addressFrom, body)
-export const addressFromUpdate = (id, body) => request(`${API.addressFrom}/${id}`, body)
+export const addressFromUpdate = (id, body) => request.put(`${API.addressFrom}/${id}`, body)
 export const addressFromDelete = id => request.del(`${API.addressFrom}/${id}`)
 
 // 收件人

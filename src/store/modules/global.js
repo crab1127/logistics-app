@@ -2,6 +2,7 @@ import Cookies from 'js-cookie'
 
 const state = {
   title: '',
+  user: {},
   language: Cookies.get('language') || 'zh'
 }
 
@@ -12,6 +13,9 @@ const mutations = {
       state.title = title
     }
   },
+  SET_USER (state, user) {
+    state.user = user
+  },
   SET_LANGUAGE: (state, language) => {
     state.language = language
     Cookies.set('language', language)
@@ -20,7 +24,7 @@ const mutations = {
 }
 
 const actions = {
-  setLanguage({ commit }, language) {
+  setLanguage ({ commit }, language) {
     commit('SET_LANGUAGE', language)
   }
 }

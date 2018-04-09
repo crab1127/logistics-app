@@ -4,18 +4,12 @@
       class="card-box login-form">
       <h3 class="title">物流</h3>
       <el-form-item prop="username">
-        <span class="svg-container svg-container_login">
-          <svg-icon icon-class="user" />
-        </span>
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
       </el-form-item>
       <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password"></svg-icon>
-        </span>
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
           placeholder="password"></el-input>
-          <span class="show-pwd" @click="showPwd"><svg-icon icon-class="eye" /></span>
+          <span class="show-pwd" @click="showPwd">显示</span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" style="width:100%;" :loading="loading" @click.native.prevent="handleLogin">
@@ -50,7 +44,8 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: 'admin'
+        password: '123456',
+        clientId: 'c1775ad0-055e-4414-af03-5fd9bd6b09de'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -69,20 +64,29 @@ export default {
       }
     },
     handleLogin () {
+      console.log(22323)
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$router.push({ path: '/home' })
-          API.login(this.loginForm).then(res => {
+          API.login(this.loginForm)
+          .then((res) => {
+            if (res.body.status !== 'success') {
+              throw new Error(res.body.message)
+            }
             this.loading = false
-            localStorage.USER = JSON.stringify(res)
+            const token = res.body.data
+            
+            localStorage.token = token
+            return API.userInfo()
+          })
+          .then(res => {
+            this.$store.commit('SET_USER', res.body.data)
             this.$router.push({ path: '/home' })
-          }).catch(() => {
+          })
+          .catch((e) => {
+            alert('登录失败， 请重试')
             this.loading = false
           })
-        } else {
-          console.log('error submit!!')
-          return false
         }
       })
     }

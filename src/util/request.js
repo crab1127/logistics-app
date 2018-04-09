@@ -7,9 +7,15 @@ Vue.use(VueResource)
   // Vue.http.options.emulateJSON = true
 
 Vue.http.interceptors.push((request, next) => {
+  if (localStorage.token) {
+    if (!request.params) {
+      request.params = {}
+    }
+    request.params.access_token = localStorage.token // 让每个请求携带自定义token 请根据实际情况自行修改
+  }
   next(response => {
     if (response.status === 401) {
-      router.push({ name: 'Login' })
+      // router.push({ name: 'Login' })
     }
   })
 })

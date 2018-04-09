@@ -5,8 +5,16 @@
 </template>
 
 <script>
+import * as API from '@/store/api'
 export default {
-  name: 'app'
+  name: 'app',
+  mounted () {
+    API.userInfo().then(res => {
+      this.$store.commit('SET_USER', res.body.data)
+    }).catch(() => {
+      this.$store.commit('SET_USER', {})
+    })
+  }
 }
 </script>
 
