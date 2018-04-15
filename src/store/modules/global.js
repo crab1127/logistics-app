@@ -16,7 +16,7 @@ const mutations = {
   SET_USER (state, user) {
     state.user = user
   },
-  SET_LANGUAGE: (state, language) => {
+  SET_LANGUAGE (state, language) {
     state.language = language
     Cookies.set('language', language)
   }

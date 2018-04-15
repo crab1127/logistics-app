@@ -40,3 +40,15 @@ export const orderDetail = id => request.get(`${API.order}/${id}`)
 export const orderCreate = body => request.post(API.order, body)
 export const orderUpdate = (id, body) => request(`${API.order}/${id}`, body)
 export const orderDelete = id => request.del(`${API.order}/${id}`)
+
+// 产品
+export const productList = params => request.get(`${API.product}`, { params })
+export const productDetail = id => request.get(`${API.product}/${id}`)
+
+// 咨询
+export const cmsList = params => request.get(`${API.cms}`, { params })
+export const cmsDetail = id => request.get(`${API.cms}/${id}`)
+
+// 国际快递
+export const quoteChannel = params => request.get(`${API.quoteChannel}`, { params })
+export const mailProduct = params => request.get(`${API.mailProduct}`, { params })

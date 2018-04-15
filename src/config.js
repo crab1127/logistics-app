@@ -16,5 +16,9 @@ export const API = {
   addressReach: ROOT + '/external/customer/addrReach/manage', // 收件人
   order: ROOT + '/external/customer/order/manage',
   fund: ROOT + '/external/customer/fund/manage',
-  myfund: ROOT + '/external/customer/fund/myfund'
+  myfund: ROOT + '/external/customer/fund/myfund',
+  product: ROOT + '/external/recommend/product/query',
+  cms: ROOT + '/external/customer/index/query',
+  quoteChannel: ROOT + '/external/customer/quote/channel',
+  mailProduct: ROOT + 'external/customer/product/manage'
 }

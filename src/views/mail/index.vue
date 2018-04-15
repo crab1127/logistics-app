@@ -11,18 +11,18 @@
         <el-step :title="$t('mail.step2')"></el-step>
         <el-step :title="$t('mail.step3')"></el-step>
         <el-step :title="$t('mail.step4')"></el-step>
-        <el-step :title="$t('mail.step5')"></el-step>
-        <el-step :title="$t('mail.step6')"></el-step>
+        <!-- <el-step :title="$t('mail.step5')"></el-step>
+        <el-step :title="$t('mail.step6')"></el-step> -->
       </el-steps>
     </div>
-    <div class="flex mail-header">
+    <!-- <div class="flex mail-header">
       <div style="width: 400px">
-        <mail-count />
+        
       </div>
       <div class="flex-item" style="padding-left: 40px;">
         <div v-html="$t('mail.tipsContent')"></div>
       </div>
-    </div>
+    </div> -->
     <div class="mail-main">
       <router-view></router-view>
     </div>
@@ -31,16 +31,13 @@
 
 <script>
   import { mapState } from 'vuex'
-  import MailCount from '@/components/mail'
+  
   export default {
     name: 'mail',
     computed: {
       ...mapState({
         active: state => state.mail.step
       })
-    },
-    components: {
-      MailCount
     }
   }
 </script>

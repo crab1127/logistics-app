@@ -76,11 +76,28 @@
 
 <script>
 import IndexMail from '@/components/mail'
+import * as API from '@/store/api'
 export default {
   name: 'hello',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  mounted () {
+    this.getCms()
+    this.getProductList()
+  },
+  methods: {
+    getCms() {
+      API.cmsList().then(res => {
+        console.log(res)
+      })
+    },
+    getProductList() {
+      API.productList().then(res => {
+        console.log(res)
+      })
     }
   },
   components: {

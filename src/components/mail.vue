@@ -2,37 +2,80 @@
     <form class="mail">
         <div>
             <label for="">{{ $t('mail.fjd') }}</label>
-            <el-input></el-input>
+            
+            <el-select v-model="info.fromId" placeholder="请选择">
+                <el-option
+                v-for="item in county"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+                </el-option>
+            </el-select>
         </div>
         <div>
             <label for="">{{ $t('mail.sjd') }}</label>
-            <el-input></el-input>
+            <el-select v-model="info.reachId" placeholder="请选择">
+                <el-option
+                v-for="item in county"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+                </el-option>
+            </el-select>
         </div>
         <div>
             <label for="">{{ $t('mail.zl') }}&nbsp;&nbsp;&nbsp;</label>
-            <el-input></el-input>KG &nbsp;
+            <el-input v-model="info.weight"></el-input>KG &nbsp;
             <label for="">{{ $t('mail.cd') }} </label>
-            <el-input></el-input>CM
+            <el-input v-model="info.packageCd"></el-input>CM
         </div>
         <div>
             <label for="">{{ $t('mail.kd') }}&nbsp;&nbsp;&nbsp;</label>
-            <el-input></el-input>CM &nbsp;
+            <el-input v-model="info.packageHeigth"></el-input>CM &nbsp;
             <label for="">{{ $t('mail.gd') }} </label>
-            <el-input></el-input>CM
+            <el-input v-model="info.packageWidth"></el-input>CM
         </div>
-        <!-- <div>
-            <span>{{ $t('mail.tjzl') }}</span>
-        </div> -->
         <div>
-            <el-button type="primary">{{ $t('mail.ljgs') }}</el-button>
+            <el-button type="primary" @click="submit">{{ $t('mail.ljgs') }}</el-button>
             <el-button type="text" icon="plus">{{ $t('mail.tjbg') }}</el-button>
         </div>
     </form>
 </template>
 
 <script>
+    import { mapState } from 'vuex'
 export default {
-  name: 'mail'
+  name: 'mail',
+  computed: {
+      ...mapState({
+          mail: state => state.mail.info
+      })
+  },
+  data () {
+      return {
+          info: {
+            fromId: null,
+            reachId: null,
+            weight: null,
+            packageCd: null,
+            packageHeigth: null,
+            packageWidth: null
+          },
+          county: [
+              {label: '中国', value: '1'},
+              {label: '英国', value: '2'}
+          ]
+      }
+  },
+  mounted () {
+     Object.assign(this.info, this.mail) 
+  },
+  methods: {
+      submit () {
+          this.$store.commit('SET_QD_INFO', this.info)
+          this.$router.push({name: 'step-2', query: { id: 2 }})
+      }
+  }
 }
 </script>
 
