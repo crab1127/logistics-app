@@ -20,5 +20,5 @@ export const API = {
   product: ROOT + '/external/recommend/product/query',
   cms: ROOT + '/external/customer/index/query',
   quoteChannel: ROOT + '/external/customer/quote/channel',
-  mailProduct: ROOT + 'external/customer/product/manage'
+  mailProduct: ROOT + '/external/customer/product/manage'
 }

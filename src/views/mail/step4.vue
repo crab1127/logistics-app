@@ -1,6 +1,6 @@
 <template>
   <div>
-    简介
+    付款
   </div>
 </template>
 
