@@ -11,8 +11,8 @@
         <el-step :title="$t('mail.step2')"></el-step>
         <el-step :title="$t('mail.step3')"></el-step>
         <el-step :title="$t('mail.step4')"></el-step>
-        <!-- <el-step :title="$t('mail.step5')"></el-step>
-        <el-step :title="$t('mail.step6')"></el-step> -->
+        <el-step :title="$t('mail.step5')"></el-step>
+         <!-- <el-step :title="$t('mail.step6')"></el-step> -->
       </el-steps>
     </div>
     <!-- <div class="flex mail-header">

@@ -49,6 +49,7 @@ export const productDetail = id => request.get(`${API.product}/${id}`)
 export const cmsList = params => request.get(`${API.cms}`, { params })
 export const cmsDetail = id => request.get(`${API.cms}/${id}`)
 
-// 国际快递
+// 下单过程
 export const quoteChannel = params => request.get(`${API.quoteChannel}`, { params })
-export const mailProduct = params => request.get(`${API.mailProduct}`, { params })
+export const quoteService = id => request.get(`${API.quoteService}/${id}`)
+export const quoteProduct = params => request.get(`${API.quoteProduct}`, { params })

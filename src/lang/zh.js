@@ -36,10 +36,10 @@ export default {
   mail: {
     step1: '快速询价',
     step2: '选择渠道',
-    // step3: '选择境内物流',
-    step3: '填写详细资料',
+    step3: '选择服务',
+    step4: '填写详细资料',
     // step5: '选择派件服务',
-    step4: '下单成功',
+    step5: '下单成功',
     tipsTitle: '温馨提示：',
     tipsContent: `
       <ol>

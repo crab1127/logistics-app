@@ -19,6 +19,9 @@ export const API = {
   myfund: ROOT + '/external/customer/fund/myfund',
   product: ROOT + '/external/recommend/product/query',
   cms: ROOT + '/external/customer/index/query',
+
+  // 下单的接口
   quoteChannel: ROOT + '/external/customer/quote/channel',
-  mailProduct: ROOT + '/external/customer/product/manage'
+  quoteService: ROOT + '/external/customer/quote/service',
+  quoteProduct: ROOT + '/external/customer/product/manage'
 }

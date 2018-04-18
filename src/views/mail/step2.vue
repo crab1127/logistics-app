@@ -16,9 +16,7 @@
         &nbsp;&nbsp;
         <div class="red">￥18.52</div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <router-link :to="{name: 'step-3', query: { id: i }}">
-          <el-button type="primary">立即购买</el-button>
-        </router-link>
+        <el-button type="primary" @click="onNext(i)">立即购买</el-button>
       </li>
     </ul>
   </div>
@@ -35,11 +33,24 @@ export default {
       mail: state => state.mail.info
     })
   },
+  data () {
+    return {
+      quoteChannel: null
+    }
+  },
   mounted () {
-    this.$store.commit('SET_STEP', {step:2})
-  //  this.loadQuote()
+    console.log()
+    if (!this.mail.packageWidth) {
+      return this.$router.replace({name: 'step-1'})
+    }
+    this.$store.commit('SET_STEP', {step: 2})
+    this.loadQuote()
   },
   methods: {
+    onNext (id, name) {
+      this.$store.commit('SET_QD_INFO', {...this.mail, channelId: id, channelName: name})
+      this.$router.push({name: 'step-3'})
+    },
     loadQuote () {
       const params = {
         fromId: this.mail.fromId,
@@ -47,7 +58,7 @@ export default {
         weight: this.mail.weight
       }
       API.quoteChannel(params).then(res => {
-        console.log(res)
+        this.quoteChannel = res.body.page.items
       })
     }
   }

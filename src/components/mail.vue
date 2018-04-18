@@ -3,14 +3,7 @@
         <div>
             <label for="">{{ $t('mail.fjd') }}</label>
             
-            <el-select v-model="info.fromId" placeholder="请选择">
-                <el-option
-                v-for="item in county"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-                </el-option>
-            </el-select>
+            <el-input value="英国" readonly></el-input>
         </div>
         <div>
             <label for="">{{ $t('mail.sjd') }}</label>
@@ -54,7 +47,7 @@ export default {
   data () {
       return {
           info: {
-            fromId: null,
+            fromId: 0,
             reachId: null,
             weight: null,
             packageCd: null,
@@ -63,18 +56,18 @@ export default {
           },
           county: [
               {label: '中国', value: '1'},
-              {label: '英国', value: '2'}
+              {label: '中国香港', value: '2'}
           ]
       }
   },
   mounted () {
-     Object.assign(this.info, this.mail) 
+    Object.assign(this.info, this.mail)
   },
   methods: {
-      submit () {
-          this.$store.commit('SET_QD_INFO', this.info)
-          this.$router.push({name: 'step-2', query: { id: 2 }})
-      }
+    submit () {
+        this.$store.commit('SET_QD_INFO', {...this.info})
+        this.$router.push({name: 'step-2', query: { id: 2 }})
+    }
   }
 }
 </script>
