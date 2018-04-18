@@ -30,7 +30,8 @@ export default {
   name: 'mail-step-1',
   computed: {
     ...mapState({
-      mail: state => state.mail.info
+      mail: state => state.mail.info,
+      user: state => state.global.user
     })
   },
   data () {
@@ -40,6 +41,12 @@ export default {
   },
   mounted () {
     console.log()
+    if (!this.user.id) {
+      this.$alert('你还没登陆， 请先登陆').then(res => {
+        this.$router.push({name: 'login'})
+      })
+      return
+    }
     if (!this.mail.packageWidth) {
       return this.$router.replace({name: 'step-1'})
     }

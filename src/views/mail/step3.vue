@@ -38,6 +38,9 @@
       }
     },
     mounted () {
+      if (!this.mail.packageWidth) {
+        return this.$router.replace({name: 'step-1'})
+      }
       this.$store.commit('SET_STEP', {step: 3})
       API.quoteService(23).then(res => {
         console.log(res)

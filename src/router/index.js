@@ -6,8 +6,8 @@ const _import = require('./_import_' + process.env.NODE_ENV)
 Vue.use(Router)
 
 export const routerMap = [
-  { path: '/login', component: _import('login/index') },
-  { path: '/sign-up', component: _import('login/sign-up') },
+  { path: '/login', name: 'login', component: _import('login/index') },
+  { path: '/sign-up', name: 'sign-up', component: _import('login/sign-up') },
   { path: '/404', component: _import('error/404') },
   {
     path: '/',

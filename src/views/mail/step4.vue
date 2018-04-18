@@ -198,6 +198,9 @@
       }
     },
     mounted () {
+      if (!this.mail.packageWidth) {
+        return this.$router.replace({name: 'step-1'})
+      }
       this.$store.commit('SET_STEP', {step: 4})
       this.loadAddressFrom()
       this.loadAddressReach()
