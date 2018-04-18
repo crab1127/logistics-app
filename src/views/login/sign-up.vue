@@ -3,8 +3,24 @@
     <el-form autoComplete="on" :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px"
       class="card-box login-form">
       <h3 class="title">物流注册</h3>
+      <el-form-item prop="realname">
+        <el-input name="username" type="text" v-model="loginForm.realname" autoComplete="on" placeholder="realname" />
+      </el-form-item>
       <el-form-item prop="username">
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+      </el-form-item>
+      <el-form-item prop="countryId">
+        <el-select v-model="loginForm.countryId" placeholder="请选择">
+            <el-option
+            v-for="item in county"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+            </el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item prop="phone">
+        <el-input name="phone" type="number" v-model="loginForm.phone" autoComplete="on" placeholder="phone" />
       </el-form-item>
       <el-form-item prop="password">
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
@@ -16,7 +32,7 @@
           Sign up
         </el-button>
       </el-form-item>
-      <router-link :to="{name: 'sign-up'}" style="color: #ccc;">
+      <router-link :to="{name: 'login'}" style="color: #ccc;">
         已经有账号？登录
       </router-link> 
     </el-form>
@@ -46,16 +62,26 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '123456',
-        clientId: 'c1775ad0-055e-4414-af03-5fd9bd6b09de'
+        username: '',
+        password: '',
+        countryId: '',
+        headImgs: '122332',
+        language: 'zh',
+        phone: '',
+        realname: ''
+        // clientId: 'c1775ad0-055e-4414-af03-5fd9bd6b09de'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
         password: [{ required: true, trigger: 'blur', validator: validatePass }]
       },
       loading: false,
-      pwdType: 'password'
+      pwdType: 'password',
+      county: [
+        {label: '中国', value: '1'},
+        {label: '中国香港', value: '2'},
+        {label: '英国', value: '0'}
+      ]
     }
   },
   methods: {

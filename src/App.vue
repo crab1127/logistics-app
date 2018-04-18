@@ -20,4 +20,10 @@ export default {
 
 <style>
  @import url('./assets/index.css');
+ body {
+   background: #f4f4f4;
+ }
+ .bg-fff {
+   background: #fff;
+ }
 </style>

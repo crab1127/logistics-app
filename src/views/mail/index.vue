@@ -44,7 +44,7 @@
 
 <style>
   .step-container {
-    background: #eee;
+    background: #ddd;
     margin: 10px 0 0;
     padding:50px;
   }
@@ -52,11 +52,11 @@
     box-sizing: content-box
   }
   .mail-main {
-    border: 2px solid #eee;
+    background: #fff;
     padding: 20px;
   }
   .mail-header {
-    background: #f4f4f4;
+    background: #aaa;
     padding: 20px;
   }
 </style>

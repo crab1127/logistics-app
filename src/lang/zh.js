@@ -7,7 +7,8 @@ export default {
     contact: '联系我们',
     intro: '公司简介',
     culture: '公司文化',
-    home: '个人中心'
+    home: '个人中心',
+    product: '产品'
   },
   common: {
     login: '登录',

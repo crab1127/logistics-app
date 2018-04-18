@@ -6,7 +6,7 @@
             <el-input value="英国" readonly></el-input>
         </div>
         <div>
-            <label for="">{{ $t('mail.sjd') }}</label>
+            <label for="">{{ $t('mail.sjd') }}&nbsp;&nbsp;</label>
             <el-select v-model="info.reachId" placeholder="请选择">
                 <el-option
                 v-for="item in county"
@@ -29,8 +29,10 @@
             <el-input v-model="info.packageWidth"></el-input>CM
         </div>
         <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             <el-button type="primary" @click="submit">{{ $t('mail.ljgs') }}</el-button>
-            <el-button type="text" icon="plus">{{ $t('mail.tjbg') }}</el-button>
+            <!-- <el-button type="text" icon="plus">{{ $t('mail.tjbg') }}</el-button> -->
         </div>
     </form>
 </template>

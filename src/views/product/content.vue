@@ -2,16 +2,17 @@
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">{{ $t('nav.index') }}</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path: '/news' }">{{ $t('nav.news') }}</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/news' }">{{ $t('nav.product') }}</el-breadcrumb-item>
       <el-breadcrumb-item>{{ title }}</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="bg-fff" style="margin-top:10px">
-      <h2>{{ info.title }}</h2>
+      <h2>{{ info.productTitle }}</h2>
       <div class="attr row">
         {{ $t('news.fbrq') }}: {{ info.createTime | dateFormat }} &nbsp;&nbsp;&nbsp;
       </div>
       <div class="content">
-        {{ info.description }}
+        <img :src="info.imgUrl" alt="">
+        {{ info.productDesc }}
       </div>
     </div>
   </div>
@@ -30,7 +31,7 @@ export default {
   },
   mounted () {
     const id = this.$route.params.id
-    API.cmsDetail(id).then(res => {
+    API.productDetail(id).then(res => {
       this.info = res.body.data
     })
   },

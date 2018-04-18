@@ -2,28 +2,23 @@
   <div>
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/' }">{{ $t('nav.index') }}</el-breadcrumb-item>
-      <el-breadcrumb-item>{{ $t('nav.news') }}</el-breadcrumb-item>
+      <el-breadcrumb-item>{{ $t('nav.product') }}</el-breadcrumb-item>
     </el-breadcrumb>
-    <div class="bg-fff" style="margin-top:10px;">
-      <ul class="news-list">
-        <li class="media" v-for="item in cmsList" :key="item.id" @click="nav(item.id)">
-          <div class="media-hd">
-            <img :src="item.imgUrl" width="200px" height="200px" alt="">
-          </div>
-          <div class="media-bd">
-            <div class="flex">
-              <h4 class="flex-item media-title">
-                {{ item.title }}
-              </h4>
-              <time>{{ item.createTime | dateFormat('yyyy-MM-dd') }}</time>  
-            </div>
-            <p>
-              {{ item.description | removeHTMLTag }}
-            </p>
-          </div>
-        </li>
-      </ul>
-      <div class="row">
+    <!-- <div class="bg-fff" style="margin-top:10px;"> -->
+      <el-row style="margin-top:10px;">
+        <el-col :span="6" v-for="(item, index) in cmsList" :key="item.id" :offset="index > 0 ? 2 : 0">
+          <router-link :to="{name: 'product-content', params: {id: item.id}}">
+            <el-card :body-style="{ padding: '0px' }">
+              <img :src="item.imgUrl" class="image">
+              <div style="padding: 14px;">
+                <h3>{{ item.productTitle }}</h3>
+                 <time>{{ item.createTime | dateFormat('yyyy-MM-dd') }}</time>  
+              </div>
+            </el-card>
+          </router-link>
+        </el-col>
+      </el-row>
+      <div class="row ">
         <el-pagination
           background
           @current-change="onChange"
@@ -31,7 +26,6 @@
           :total="page.total">
         </el-pagination>
       </div>
-    </div>
   </div>
 </template>
 
@@ -55,7 +49,7 @@ export default {
   },
   methods: {
     load () {
-      API.cmsList(this.page).then(res => {
+      API.productList(this.page).then(res => {
         this.cmsList = res.body.page.items
         this.page.total = res.body.page.total
       })
@@ -65,7 +59,7 @@ export default {
       this.load()
     },
     nav (id) {
-      this.$router.push({name: 'news-content', params: {id}})
+      this.$router.push({name: 'product-content', params: {id}})
     }
   },
   filters: {

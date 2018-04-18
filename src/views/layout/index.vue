@@ -1,41 +1,46 @@
 <template>
   <div>
-    <header class="header container">
-      <h1>
-        <router-link to="/">
-          <img src="../../assets/images/logo.jpg" width="200px" height="80px" alt=""> 
-        </router-link>
-      </h1>
-      <ul class="nav">
-        <li>
-          <router-link to="/">{{ $t('nav.index') }}</router-link>
-        </li>
-        <li>
-          <router-link to="/mail">{{ $t('nav.mail') }}</router-link>
-        </li>
-        <li>
-          <router-link to="/news">{{ $t('nav.news') }}</router-link>
-        </li>
-        <li>
-          <router-link to="/about">{{ $t('nav.about') }}</router-link>
-        </li>
-        <li class="user" v-if="user && user.realname ">
-          
-          <router-link to="/home">{{ user.realname }}</router-link>
-        </li>
-        <li class="user" v-if="!user || !user.realname ">
-          
-          <router-link to="/login">{{ $t('common.login') }}</router-link>
-          &nbsp;/&nbsp;
-          <router-link to="/sign-up">{{ $t('common.register') }}</router-link>
-        </li>
-        <li class="lang">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <span @click="tiggleLang('zh')">中文</span>
-          &nbsp;/&nbsp;
-          <span @click="tiggleLang('en')">EN</span>
-        </li>
-      </ul>
+    <header class="header">
+      <div class="container aaa">
+        <h1>
+          <router-link to="/">
+            <img src="../../assets/images/logo.jpg" width="200px" height="80px" alt=""> 
+          </router-link>
+        </h1>
+        <ul class="nav">
+          <li>
+            <router-link to="/">{{ $t('nav.index') }}</router-link>
+          </li>
+          <li>
+            <router-link to="/mail">{{ $t('nav.mail') }}</router-link>
+          </li>
+          <li>
+            <router-link to="/news">{{ $t('nav.news') }}</router-link>
+          </li>
+          <li>
+            <router-link to="/product">产品</router-link>
+          </li>
+          <li>
+            <router-link to="/about">{{ $t('nav.about') }}</router-link>
+          </li>
+          <li class="user" v-if="user && user.realname ">
+            
+            <router-link to="/home">{{ user.realname }}</router-link>
+          </li>
+          <li class="user" v-if="!user || !user.realname ">
+            
+            <router-link to="/login">{{ $t('common.login') }}</router-link>
+            &nbsp;/&nbsp;
+            <router-link to="/sign-up">{{ $t('common.register') }}</router-link>
+          </li>
+          <li class="lang">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span @click="tiggleLang('zh')">中文</span>
+            &nbsp;/&nbsp;
+            <span @click="tiggleLang('en')">EN</span>
+          </li>
+        </ul>
+      </div>
     </header>
     <main class="container">
       <router-view></router-view>
@@ -76,10 +81,16 @@ export default {
   .header {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background: #fff;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.3);
     margin-bottom: 20px;
   }
-
+  .aaa{
+    display: flex;
+    justify-content: space-between;
+  }
   .nav {
     display: flex;
   }

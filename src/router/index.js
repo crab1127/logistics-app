@@ -18,6 +18,8 @@ export const routerMap = [
       { path: 'index', component: _import('index/index') },
       { path: 'news', name: 'news', component: _import('news/list') },
       { path: 'news/:id', name: 'news-content', component: _import('news/content') },
+      { path: 'product', name: 'product', component: _import('product/list') },
+      { path: 'product/:id', name: 'product-content', component: _import('product/content') },
       {
         path: 'mail',
         name: 'mail',

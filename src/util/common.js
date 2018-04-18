@@ -62,7 +62,7 @@ export const getQueryString = (name) => {
  */
 export const dateFormat = (date, fmt = 'yyyy-MM-dd hh:mm:ss') => {
   if (!date) return ''
-
+  date = parseInt(date)
   const date1 = new Date(date)
   const o = {
     'M+': date1.getMonth() + 1, // 月
@@ -113,4 +113,13 @@ export const downMerge = (newdata, oldData, id) => {
     }
   }
   return [...oldData]
+}
+
+// 过滤html
+export const removeHTMLTag = (str) => {
+  str = str.replace(/<\/?[^>]*>/g, '') // 去除HTML tag
+  str = str.replace(/[ | ]*\n/g, '\n') // 去除行尾空白
+  // str = str.replace(/\n[\s| | ]*\r/g,'\n'); //去除多余空行
+  str = str.replace(/ /ig, '')// 去掉
+  return str
 }
