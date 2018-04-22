@@ -41,8 +41,9 @@
       if (!this.mail.packageWidth) {
         return this.$router.replace({name: 'step-1'})
       }
+      const id = this.$route.query.id
       this.$store.commit('SET_STEP', {step: 3})
-      API.quoteService(23).then(res => {
+      API.quoteService(id).then(res => {
         console.log(res)
         this.serive = res.body.data
         console.log(this.serive)

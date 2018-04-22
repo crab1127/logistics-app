@@ -11,7 +11,7 @@ export const API = {
   signUp: ROOT + '/external/customer/user/manage',
   country: ROOT + '/common/areaCountry',
   changPass: ROOT + '/external/customer/user/pass',
-  user: ROOT + 'external/customer/user/manage',
+  user: ROOT + '/external/customer/user/manage',
   addressFrom: ROOT + '/external/customer/addrFrom/manage', // 发件人
   addressReach: ROOT + '/external/customer/addrReach/manage', // 收件人
   order: ROOT + '/external/customer/order/manage',

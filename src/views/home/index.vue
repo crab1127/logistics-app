@@ -28,7 +28,7 @@
         </el-menu>
       </el-col>
       <el-col :span="20">
-        <router-view style="margin-left: 20px;"></router-view>
+        <router-view style="margin-left: 20px; background: #fff; padding: 20px;" ></router-view>
       </el-col>
     </el-row>
   </div>
@@ -36,6 +36,7 @@
 
 <script>
   import { mapState } from 'vuex'
+  import * as API from '@/store/api'
   export default {
     name: 'home',
     computed: {
@@ -44,9 +45,14 @@
       })
     },
     mounted () {
-      if (!this.user.username) {
-        this.$router.replace({name: 'login'})
-      }
+      API.userInfo().then(res => {
+        // this.$store.commit('SET_USER', res.body.data)
+        if (!res.body.data.username) {
+          this.$router.replace({name: 'login'})
+        }
+      }).catch(() => {
+        this.$store.commit('SET_USER', {})
+      })
     },
     methods: {
       nav (name) {

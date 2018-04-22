@@ -2,21 +2,27 @@
   <div>
     <h3> {{ $t('mail.xzqjfs') }} </h3>
      <ul>
-      <li class="media" v-for="i in 4" :key="i">
+      <li class="media" v-for="item in quoteChannel" :key="item.id">
         <div class="media-hd">
-          <img src="../../assets/images/hb1.png" alt="">
+          <img :src="item.logoImg" alt="" width="200px" height="100px">
         </div>
         <div class="media-bd">
           <div class="media-title">
-            奶粉包髓专线
+            {{ item.name }}
           </div>
-          <p>全英唯一合法奶粉包髓</p>
+          <p>{{ item.channelDesc }}</p>
         </div>
-        <div>6-12个工作日</div>
+        <div>{{ item.costTimeFrom }}-{{ item.costTimeTo }}个工作日</div>
         &nbsp;&nbsp;
-        <div class="red">￥18.52</div>
+        <div style="width: 350px; margin-left: 20px;">
+          <ul>
+            <li v-for="ac in item.feeLadderList" :key="ac">
+              <el-tag>{{ ac.feeType }} </el-tag> 重量区间： {{ ac.weightFrom }} ~ {{ ac.weightTo }}， 价格: <span class="red"> {{ ac.amount }}</span>
+            </li>
+          </ul>
+        </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <el-button type="primary" @click="onNext(i)">立即购买</el-button>
+        <el-button type="primary" @click="onNext(item.id)">立即购买</el-button>
       </li>
     </ul>
   </div>
@@ -56,16 +62,16 @@ export default {
   methods: {
     onNext (id, name) {
       this.$store.commit('SET_QD_INFO', {...this.mail, channelId: id, channelName: name})
-      this.$router.push({name: 'step-3'})
+      this.$router.push({name: 'step-3', query: {id}})
     },
     loadQuote () {
       const params = {
-        fromId: this.mail.fromId,
-        reachId: this.mail.reachId,
+        fromId: 102,
+        reachId: 23,
         weight: this.mail.weight
       }
       API.quoteChannel(params).then(res => {
-        this.quoteChannel = res.body.page.items
+        this.quoteChannel = res.body.data
       })
     }
   }
