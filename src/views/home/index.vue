@@ -35,8 +35,19 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     name: 'home',
+    computed: {
+      ...mapState({
+        user: state => state.global.user
+      })
+    },
+    mounted () {
+      if (!this.user.username) {
+        this.$router.replace({name: 'login'})
+      }
+    },
     methods: {
       nav (name) {
         console.log(name)

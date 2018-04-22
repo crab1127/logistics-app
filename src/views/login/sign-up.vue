@@ -4,16 +4,16 @@
       class="card-box login-form">
       <h3 class="title">物流注册</h3>
       <el-form-item prop="realname">
-        <el-input name="username" type="text" v-model="loginForm.realname" autoComplete="on" placeholder="realname" />
+        <el-input name="realname" type="text" v-model="loginForm.realname" autoComplete="on" placeholder="昵称" />
       </el-form-item>
-      <el-form-item prop="username">
-        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
+      <el-form-item label="" prop="username">
+        <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="用户名" />
       </el-form-item>
-      <el-form-item prop="email">
-        <el-input name="email" type="email" v-model="loginForm.email" autoComplete="on" placeholder="email" />
+      <el-form-item label="" prop="email">
+        <el-input name="email" type="email" v-model="loginForm.email" autoComplete="on" placeholder="邮箱" />
       </el-form-item>
-      <el-form-item prop="countryId">
-        <el-select v-model="loginForm.countryId" placeholder="请选择">
+      <el-form-item label="" prop="countryId">
+        <el-select v-model="loginForm.countryId" placeholder="请选择国家">
             <el-option
             v-for="item in county"
             :key="item.value"
@@ -22,12 +22,12 @@
             </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item prop="phone">
-        <el-input name="phone" type="number" v-model="loginForm.phone" autoComplete="on" placeholder="phone" />
+      <el-form-item label="" prop="phone">
+        <el-input name="phone" type="number" minlength="11" v-model="loginForm.phone" autoComplete="on" placeholder="手机" />
       </el-form-item>
-      <el-form-item prop="password">
+      <el-form-item label="" prop="password">
         <el-input name="password" :type="pwdType" @keyup.enter.native="handleLogin" v-model="loginForm.password" autoComplete="on"
-          placeholder="password"></el-input>
+          placeholder="密码"></el-input>
           <span class="show-pwd" @click="showPwd">显示</span>
       </el-form-item>
       <el-form-item>
@@ -110,16 +110,14 @@ export default {
             if (res.body.status !== 'success') {
               throw new Error(res.body.message)
             }
-            this.loading = false
-            const token = res.body.data
-            
-            localStorage.token = token
-            return API.userInfo()
+            this.$message('注册成功')
+            this.$router.push({ path: '/login' })
           })
-          .then(res => {
-            this.$store.commit('SET_USER', res.body.data)
-            this.$router.push({ path: '/home' })
-          })
+          // .then(res => {
+          //   this.$store.commit('SET_USER', res.body.data)
+
+          //   this.$router.push({ path: '/home' })
+          // })
           .catch((e) => {
             alert('注册失败， 请重试')
             this.loading = false

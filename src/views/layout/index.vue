@@ -24,8 +24,10 @@
             <router-link to="/about">{{ $t('nav.about') }}</router-link>
           </li>
           <li class="user" v-if="user && user.realname ">
-            
             <router-link to="/home">{{ user.realname }}</router-link>
+          </li>
+          <li class="user" v-if="user && user.realname ">
+            <span @click="onQuite">退出</span>
           </li>
           <li class="user" v-if="!user || !user.realname ">
             
@@ -72,6 +74,11 @@ export default {
         message: 'switch language success',
         type: 'success'
       })
+    },
+    onQuite () {
+      localStorage.clear()
+      this.$router.push({path: '/'})
+      location.reload()
     }
   }
 }
