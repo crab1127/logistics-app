@@ -9,6 +9,9 @@
       <el-form-item prop="username">
         <el-input name="username" type="text" v-model="loginForm.username" autoComplete="on" placeholder="username" />
       </el-form-item>
+      <el-form-item prop="email">
+        <el-input name="email" type="email" v-model="loginForm.email" autoComplete="on" placeholder="email" />
+      </el-form-item>
       <el-form-item prop="countryId">
         <el-select v-model="loginForm.countryId" placeholder="请选择">
             <el-option
@@ -68,19 +71,24 @@ export default {
         headImgs: '122332',
         language: 'zh',
         phone: '',
-        realname: ''
+        realname: '',
+        email: ''
         // clientId: 'c1775ad0-055e-4414-af03-5fd9bd6b09de'
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePass }]
+        password: [{ required: true, trigger: 'blur', validator: validatePass }],
+        countryId: [{ required: true, trigger: 'blur' }],
+        phone: [{ required: true, trigger: 'blur' }],
+        realname: [{ required: true, trigger: 'blur' }],
+        email: [{ required: true, trigger: 'blur' }]
       },
       loading: false,
       pwdType: 'password',
       county: [
-        {label: '中国', value: '1'},
-        {label: '中国香港', value: '2'},
-        {label: '英国', value: '0'}
+        {label: '中国', value: '23'},
+        // {label: '中国香港', value: '102'},
+        {label: '英国', value: '102'}
       ]
     }
   },
