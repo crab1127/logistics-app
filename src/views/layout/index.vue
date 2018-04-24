@@ -4,7 +4,7 @@
       <div class="container aaa">
         <h1>
           <router-link to="/">
-            <img src="../../assets/images/logo.jpg" width="200px" height="80px" alt=""> 
+            <img src="../../assets/images/logo.jpg" height="80px" alt=""> 
           </router-link>
         </h1>
         <ul class="nav">
