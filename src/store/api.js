@@ -52,4 +52,5 @@ export const cmsDetail = id => request.get(`${API.cms}/${id}`)
 // 下单过程
 export const quoteChannel = params => request.get(`${API.quoteChannel}`, { params })
 export const quoteService = id => request.get(`${API.quoteService}/${id}`)
+export const quoteServiceInfo = (id, params) => request.get(`${API.quoteServiceInfo}/${id}`, { params })
 export const quoteProduct = params => request.get(`${API.quoteProduct}`, { params })

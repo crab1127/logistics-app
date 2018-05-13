@@ -49,16 +49,16 @@ export default {
   data () {
       return {
           info: {
-            fromId: 0,
-            reachId: null,
+            fromId: 102,
+            reachId: 23,
             weight: null,
             packageCd: null,
             packageHeigth: null,
             packageWidth: null
           },
           county: [
-              {label: '中国', value: '1'},
-              {label: '中国香港', value: '2'}
+              {label: '中国', value: '23'},
+            //   {label: '中国香港', value: '23'}
           ]
       }
   },

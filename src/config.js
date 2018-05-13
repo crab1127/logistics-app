@@ -23,5 +23,6 @@ export const API = {
   // 下单的接口
   quoteChannel: ROOT + '/external/customer/quote/channel',
   quoteService: ROOT + '/external/customer/quote/service',
+  quoteServiceInfo: ROOT + '/external/customer/quote/serviceNetworkItem',
   quoteProduct: ROOT + '/external/customer/product/manage'
 }

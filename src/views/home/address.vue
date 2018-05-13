@@ -31,26 +31,26 @@
       :title="dialogTitle"
       :visible.sync="dialogVisible"
       width="50%">
-      <el-form label-width="100px" :model="form">
-        <el-form-item :label="$t('address.name')">
+      <el-form label-width="100px" :model="form" :rules="rules" ref="ruleForm">
+        <el-form-item :label="$t('address.name')"  prop="englishName">
           <el-input v-model="form.englishName"></el-input>
         </el-form-item>
-        <el-form-item :label="$t('address.tel')">
-          <el-input v-model="form.mobile"></el-input>
+        <el-form-item :label="$t('address.tel')" prop="mobile">
+          <el-input v-model="form.mobile" type="number" minlength="11"></el-input>
         </el-form-item>
-        <el-form-item :label="$t('address.mail')">
-          <el-input v-model="form.email"></el-input>
+        <el-form-item :label="$t('address.mail')" prop="email">
+          <el-input v-model="form.email" type="email"></el-input>
         </el-form-item>
-        <el-form-item :label="$t('address.zipcode')">
+        <el-form-item :label="$t('address.zipcode')" prop="postcode">
           <el-input v-model="form.postcode"></el-input>
         </el-form-item>
-        <el-form-item :label="$t('address.country')">
+        <el-form-item :label="$t('address.country')" prop="countryId">
           <el-select v-model="form.countryId">
-            <el-option label="中国" value="1" />
-            <el-option label="英国" value="2" />
+            <el-option label="中国" value="23" />
+            <el-option label="英国" value="102" />
           </el-select>
         </el-form-item>
-        <el-form-item :label="$t('address.address')">
+        <el-form-item :label="$t('address.address')" prop="street">
           <div class="flex">
             <el-input v-model="form.provice" :placeholder="$t('address.provice')"></el-input>
             <el-input v-model="form.city" :placeholder="$t('address.city')"></el-input>
@@ -110,7 +110,41 @@
         activeName: 'from',
         action: 'add',
         form: { ...addressObj },
-        tableData: []
+        tableData: [],
+        rules: {
+          address: [
+            { required: true, message: '请填写地址', trigger: 'change' }
+          ], // *详细地址 string
+          city: [
+            { required: true, message: '请填写城市', trigger: 'change' }
+          ], // * string
+          countryId:  [
+            { required: true, message: '请选择国家', trigger: 'change' }
+          ], // *国家ID number
+          email:  [
+            { required: true, message: '请填写邮箱', trigger: 'change' },
+            { type: 'email', message: '请填写正确的邮箱', trigger: 'change' }
+          ], // *邮箱 string
+          englishName:  [
+            { required: true, message: '请填写名称', trigger: 'change' }
+          ], // *名称 strig
+          mobile:  [
+            { required: true, message: '请填写手机号码', trigger: 'change' },
+            { min: 11, max: 15, message: '请填写正确的手机号码',  trigger: 'change' }
+          ], // *手机号 string
+          postcode:  [
+            { required: true, message: '请填写邮编', trigger: 'change' }
+          ], // *地区邮编 string
+          provice:  [
+            { required: true, message: '请填写省', trigger: 'change' }
+          ], // string
+          street:  [
+            { required: true, message: '请填写市', trigger: 'change' }
+          ], // *街道 string
+          town:  [
+            { required: true, message: '请填写区', trigger: 'change' }
+          ] //
+        }
       }
     },
     watch: {
@@ -151,22 +185,30 @@
         })
       },
       update () {
-        const id = this.form.id
-        const form = { ...this.form }
-        const addressUpdateServe = this.activeName === 'from' ? API.addressFromUpdate(id, form) : API.addressReachUpdate(id, form)
-        addressUpdateServe.then(res => {
-          // 重新请求数据
-          this.load()
-          this.dialogVisible = false
+         this.$refs['ruleForm'].validate((valid) => {
+          if (!valid) return 
+          const id = this.form.id
+          const form = { ...this.form }
+          const addressUpdateServe = this.activeName === 'from' ? API.addressFromUpdate(id, form) : API.addressReachUpdate(id, form)
+          addressUpdateServe.then(res => {
+            // 重新请求数据
+            this.load()
+            this.dialogVisible = false
+          })
         })
       },
       create () {
-        const form = { ...this.form, address: this.form.provice + this.form.city + this.form.town + this.form.street }
-        const addressCreateServe = this.activeName === 'from' ? API.addressFromCreate(form) : API.addressReachCreate(form)
-        addressCreateServe.then(res => {
-          // 重新请求数据
-          this.load()
-          this.dialogVisible = false
+        this.$refs['ruleForm'].validate((valid) => {
+          if (!valid) return 
+          const form = { ...this.form, address: this.form.provice + this.form.city + this.form.town + this.form.street }
+          const addressCreateServe = this.activeName === 'from' ? API.addressFromCreate(form) : API.addressReachCreate(form)
+          addressCreateServe.then(res => {
+            // 重新请求数据
+            this.load()
+            this.dialogVisible = false
+          }).catch(res => {
+            this.$message('添加失败请重试')
+          })
         })
       },
       del (id) {

@@ -212,8 +212,7 @@
           ...this.mail,
           fromAddrId: this.fromAddrId,
           reachAddrId: this.reachAddrId,
-          orderDetials: this.products,
-          feeType: 1
+          orderDetials: this.products
         }
         API.orderCreate(params).then(res => {
           if (res.body.status === 'success') {
