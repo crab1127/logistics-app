@@ -17,6 +17,9 @@
       <el-table-column prop="postcode" :label="$t('address.zipcode')">
       </el-table-column>
       <el-table-column prop="countryId" :label="$t('address.country')">
+        <template slot-scope="scope">
+          {{ scope.row.countryId | getCount }}
+        </template>
       </el-table-column>
       <el-table-column prop="address" :label="$t('address.address')">
       </el-table-column>
@@ -181,7 +184,11 @@
         const addressServe = this.activeName === 'from' ? API.addressFromList() : API.addressReachList()
         addressServe.then(res => {
           console.log(12344, res)
-          this.tableData = res.body.page.items
+          if (res.body.data) {
+            this.tableData = res.body.data
+          } else {
+            this.tableData = res.body.page.items
+          }
         })
       },
       update () {
@@ -217,6 +224,17 @@
           // 重新请求数据
           this.load()
         })
+      }
+    },
+    filters: {
+      getCount (id) {
+        let str
+        if (~~id === 1 || ~~id === 23) {
+          str = '中国'
+        } else {
+          str = '英国'
+        }
+        return str
       }
     }
   }

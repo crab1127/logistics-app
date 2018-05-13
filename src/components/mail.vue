@@ -57,7 +57,7 @@ export default {
             packageWidth: null
           },
           county: [
-              {label: '中国', value: '23'},
+              {label: '中国', value: 23},
             //   {label: '中国香港', value: '23'}
           ]
       }

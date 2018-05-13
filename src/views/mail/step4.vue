@@ -233,7 +233,8 @@
       },
       loadAddressFrom () {
         API.addressFromList().then(res => {
-          this.addressFrom = res.body.page.items
+          this.addressFrom = res.body.data
+          // this.addressFrom = res.body.page.items
         })
       },
       loadAddressReach () {
